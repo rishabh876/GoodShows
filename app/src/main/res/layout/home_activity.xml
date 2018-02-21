@@ -5,15 +5,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.rishabh.goodshows.HomeActivity">
+    tools:context="com.rishabh.goodshows.homeActivity.view.HomeActivity">
 
-    <TextView
+    <com.wang.avi.AVLoadingIndicatorView
+        android:id="@+id/progress_indicator"
+        style="@style/AVLoadingIndicatorView.Large"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
+        app:indicatorColor="@color/colorPrimary3"
+        app:indicatorName="LineScalePulseOutIndicator"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="gone" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/shows_list_rv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layoutManager="LinearLayoutManager"
+        tools:listitem="@layout/tv_show_list_item" />
 
 </android.support.constraint.ConstraintLayout>
