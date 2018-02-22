@@ -55,8 +55,8 @@ class HomePresenterSuccessApiTest {
         homePresenter.init()
 
         verify(homeView, times(1)).showFullscreenProgress()
-        verify(homeView, times(1)).addItems(ArgumentMatchers.anyList())
-        verify(homeView, times(1)).hideFullscreenProgress()
+        verify(homeView, Mockito.after(100).times(1)).addItems(ArgumentMatchers.anyList())
+        verify(homeView, Mockito.after(100).times(1)).hideFullscreenProgress()
     }
 
     @After
