@@ -28,3 +28,6 @@ jobs:
           destination: reports
       - store_test_results:
           path: app/build/test-results
+test:
+  post:
+    - bash <(curl -s https://codecov.io/bash)
