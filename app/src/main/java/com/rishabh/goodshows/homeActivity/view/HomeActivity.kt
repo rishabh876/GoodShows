@@ -1,6 +1,7 @@
 package com.rishabh.goodshows.homeActivity.view
 
 import android.os.Bundle
+import android.support.design.widget.Snackbar
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.View
@@ -40,7 +41,7 @@ class HomeActivity : MvpActivity<HomePresenter.View, HomePresenter>(), HomePrese
         })
     }
 
-    private fun onScrolled(){
+    private fun onScrolled() {
         val lastItem = (showsListRv.layoutManager as LinearLayoutManager).itemCount
         val currentlyVisibleItem = (showsListRv.layoutManager as LinearLayoutManager).findLastVisibleItemPosition()
         if (lastItem - currentlyVisibleItem < 5) {
@@ -76,5 +77,9 @@ class HomeActivity : MvpActivity<HomePresenter.View, HomePresenter>(), HomePrese
 
     override fun addItems(tvShows: List<TvShow>) {
         adapter.addItems(tvShows)
+    }
+
+    override fun showError(errorMessage: String) {
+        Snackbar.make(findViewById(R.id.parent_container), errorMessage, Snackbar.LENGTH_SHORT).show()
     }
 }

@@ -1,5 +1,6 @@
 package com.rishabh.goodshows.homeActivity.presenter
 
+import android.util.Log
 import com.hannesdorfmann.mosby3.mvp.MvpBasePresenter
 import com.hannesdorfmann.mosby3.mvp.MvpView
 import com.rishabh.goodshows.models.PaginatedResponse
@@ -43,6 +44,8 @@ class HomePresenter(private var theMovieDbService: TheMovieDbService) : MvpBaseP
         ifViewAttached {
             it.hideFooterLoader()
             it.hideFullscreenProgress()
+            it.showError(e!!.message!!)
+            Log.e("Error", e.toString())
         }
     }
 
@@ -64,5 +67,6 @@ class HomePresenter(private var theMovieDbService: TheMovieDbService) : MvpBaseP
         fun showFooterLoader()
         fun hideFooterLoader()
         fun addItems(tvShows: List<TvShow>)
+        fun showError(errorMessage: String)
     }
 }
