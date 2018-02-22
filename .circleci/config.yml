@@ -22,7 +22,7 @@ jobs:
           key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
       - run:
           name: Run Tests
-          command: 
+          command: |
             ./gradlew lint test
             ./gradlew jacocoFullReport
             bash <(curl -s https://codecov.io/bash)
