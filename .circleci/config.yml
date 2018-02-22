@@ -24,7 +24,7 @@ jobs:
           name: Run Tests
           command: |
             ./gradlew lint test
-            ./gradlew jacocoFullReport
+            ./gradlew jacocoTestReport
             bash <(curl -s https://codecov.io/bash)
       - store_artifacts:
           path: app/build/reports
