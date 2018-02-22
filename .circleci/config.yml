@@ -24,6 +24,8 @@ jobs:
     steps:
       - checkout
 
+      - sudo ANDROID_HOME=/usr/local/android-sdk-linux ./gradlew dependencies
+      
       # Download and cache dependencies
       - restore_cache:
           keys:
