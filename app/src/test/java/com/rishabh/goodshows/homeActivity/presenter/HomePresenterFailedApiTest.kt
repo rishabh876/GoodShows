@@ -41,7 +41,6 @@ class HomePresenterFailedApiTest {
 
         val errorResponse = Flowable.create<PaginatedResponse<TvShow>>({
             it.onError(exception)
-            it.onComplete()
         }, BackpressureStrategy.DROP)
 
         Mockito.`when`(exception.message)
@@ -58,8 +57,8 @@ class HomePresenterFailedApiTest {
         homePresenter.init()
 
         Mockito.verify(homeView, Mockito.times(1)).showFullscreenProgress()
-        Mockito.verify(homeView, Mockito.times(1)).showError(ArgumentMatchers.anyString())
-        Mockito.verify(homeView, Mockito.times(1)).hideFullscreenProgress()
+        Mockito.verify(homeView, Mockito.after(100).times(1)).showError(ArgumentMatchers.anyString())
+        Mockito.verify(homeView, Mockito.after(100).times(1)).hideFullscreenProgress()
     }
 
     @After
