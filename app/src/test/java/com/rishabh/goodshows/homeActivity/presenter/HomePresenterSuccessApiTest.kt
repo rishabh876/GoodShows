@@ -41,7 +41,7 @@ class HomePresenterSuccessApiTest {
         RxAndroidPlugins.setInitMainThreadSchedulerHandler { Schedulers.trampoline() }
 
         val typeToken = object : TypeToken<PaginatedResponse<TvShow>>() {}.type
-        val successResponse = Gson().fromJson<PaginatedResponse<TvShow>>(MockResponses.SUCCESS_JSON, typeToken)
+        val successResponse = Gson().fromJson<PaginatedResponse<TvShow>>(MockResponses.SUCCESS_JSON_PAGE1, typeToken)
         val response = Flowable.just(successResponse)
 
         Mockito.`when`(theMovieDbService.getPopularTvShows())
