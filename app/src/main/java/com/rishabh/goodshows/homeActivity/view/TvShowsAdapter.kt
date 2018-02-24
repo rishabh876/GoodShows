@@ -1,5 +1,10 @@
 package com.rishabh.goodshows.homeActivity.view
 
+import android.support.annotation.LayoutRes
+import android.support.annotation.Nullable
+import android.support.v4.view.ViewCompat
+import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.OrientationHelper
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -13,13 +18,19 @@ import com.rishabh.goodshows.R
 import com.rishabh.goodshows.models.TvShow
 import com.rishabh.goodshows.network.NetworkConstants
 
-
-class TvShowsAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class TvShowsAdapter(private var listener: Listener,
+                     @LayoutRes private val tvShowLayout: Int) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private val ITEMS = 1
     private val FOOTER = 2
     private var isFooterVisible = false
     private var tvShowsList = ArrayList<TvShow>()
+    private var isVertical = true
+
+    override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
+        super.onAttachedToRecyclerView(recyclerView)
+        isVertical = ((recyclerView.layoutManager as? LinearLayoutManager)?.orientation != OrientationHelper.HORIZONTAL)
+    }
 
     fun removeFooter() {
         if (isFooterVisible) {
@@ -52,11 +63,15 @@ class TvShowsAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): RecyclerView.ViewHolder? {
         return when (viewType) {
             ITEMS -> {
-                val view = LayoutInflater.from(parent!!.context).inflate(R.layout.tv_show_list_item, parent, false)
+                val view = LayoutInflater.from(parent!!.context).inflate(tvShowLayout, parent, false)
                 TvShowsViewHolder(view)
             }
             FOOTER -> {
-                val view = LayoutInflater.from(parent!!.context).inflate(R.layout.footer_progress, parent, false)
+                var footerLayout = R.layout.footer_progress
+                if(!isVertical)
+                    footerLayout = R.layout.horizontal_footer_progress
+
+                val view = LayoutInflater.from(parent!!.context).inflate(footerLayout, parent, false)
                 ProgressFooterViewHolder(view)
             }
             else -> {
@@ -75,42 +90,57 @@ class TvShowsAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder?, position: Int) {
         if (holder is TvShowsViewHolder) {
             holder.bind(tvShowsList[position])
-        } else if (holder is ProgressFooterViewHolder) {
-            holder.bind()
         }
+    }
+
+    interface Listener {
+        fun onTvShowClicked(tvShow: TvShow, itemView: View)
     }
 
     inner class TvShowsViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
-        @BindView(R.id.imageView)
-        lateinit var imageView: ImageView
+        @BindView(R.id.tvshow_container)
+        lateinit var tvShowContainer: ViewGroup
+        @BindView(R.id.cover_iv)
+        lateinit var coverImageView: ImageView
         @BindView(R.id.title_tv)
         lateinit var titleTv: TextView
+        @BindView(R.id.star_rating_tv)
+        lateinit var starRatingTv: TextView
+
         @BindView(R.id.desc_tv)
-        lateinit var descTv: TextView
+        @Nullable
+        @JvmField
+        var descTv: TextView? = null
+        @BindView(R.id.year_tv)
+        @Nullable
+        @JvmField
+        var yearTv: TextView? = null
 
         fun bind(tvShow: TvShow) {
-            Glide.with(imageView)
+            Glide.with(coverImageView)
                     .load(NetworkConstants.BASE_URL_IMAGE + NetworkConstants.ImageSize.W500 + tvShow.posterPath)
-                    .into(imageView)
+                    .into(coverImageView)
+
             titleTv.text = tvShow.name
-            descTv.text = tvShow.overview
+            descTv?.text = tvShow.overview
+            starRatingTv.text = tvShow.voteAverage.toString()
+            yearTv?.text = tvShow.firstAirDate?.split("-")?.get(0)
+
+            ViewCompat.setTransitionName(coverImageView, tvShow.name + "cover")
+            ViewCompat.setTransitionName(titleTv, tvShow.name + "title")
+            ViewCompat.setTransitionName(starRatingTv, tvShow.name + "star")
+            descTv?.apply { ViewCompat.setTransitionName(this, tvShow.name + "desc") }
+            yearTv?.apply { ViewCompat.setTransitionName(this, tvShow.name + "year") }
+
+            tvShowContainer.setOnClickListener { listener.onTvShowClicked(tvShow, itemView) }
         }
 
         init {
             ButterKnife.bind(this, view)
         }
+
     }
 
-    inner class ProgressFooterViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-
-        fun bind() {
-
-        }
-
-        init {
-            ButterKnife.bind(this, view)
-        }
-    }
-
+    inner class ProgressFooterViewHolder(view: View) : RecyclerView.ViewHolder(view)
 }

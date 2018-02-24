@@ -5,5 +5,6 @@
     <color name="colorPrimary2">#33393f</color>
     <color name="colorPrimary3">#474D52</color>
     <color name="colorAccent">#ffc400</color>
+    <color name="cardBackground">#272C30</color>
     <color name="windowBackground">#1f1f1f</color>
 </resources>

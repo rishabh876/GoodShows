@@ -15,7 +15,7 @@ interface TheMovieDbService {
                           @Query(NetworkConstants.QueryParams.API_KEY) apiKey: String = NetworkConstants.API_KEY): Flowable<PaginatedResponse<TvShow>>
 
     @GET(NetworkConstants.ApiEndpoint.SIMILAR_TV)
-    fun getSimilarTvShows(@Path(NetworkConstants.PathParams.TV_SHOW_ID) tvShowId: String,
+    fun getSimilarTvShows(@Path(NetworkConstants.PathParams.TV_SHOW_ID) tvShowId: Int,
                           @Query(NetworkConstants.QueryParams.PAGE) page: Int = 1,
                           @Query(NetworkConstants.QueryParams.API_KEY) apiKey: String = NetworkConstants.API_KEY): Flowable<PaginatedResponse<TvShow>>
 }

@@ -3,9 +3,9 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/parent_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/parent_container"
     tools:context="com.rishabh.goodshows.homeActivity.view.HomeActivity">
 
     <com.wang.avi.AVLoadingIndicatorView
@@ -25,7 +25,11 @@
         android:id="@+id/shows_list_rv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:clipToPadding="false"
         android:orientation="vertical"
+        android:paddingBottom="8dp"
+        android:paddingTop="8dp"
+        android:layout_gravity="center"
         app:layoutManager="LinearLayoutManager"
         tools:listitem="@layout/tv_show_list_item" />
 

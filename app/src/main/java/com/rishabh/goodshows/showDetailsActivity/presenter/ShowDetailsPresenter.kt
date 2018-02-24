@@ -1,4 +1,4 @@
-package com.rishabh.goodshows.homeActivity.presenter
+package com.rishabh.goodshows.showDetailsActivity.presenter
 
 import android.util.Log
 import com.hannesdorfmann.mosby3.mvp.MvpBasePresenter
@@ -10,58 +10,57 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 
-class HomePresenter(private var theMovieDbService: TheMovieDbService) : MvpBasePresenter<HomePresenter.View>() {
+class ShowDetailsPresenter(private var theMovieDbService: TheMovieDbService) : MvpBasePresenter<ShowDetailsPresenter.View>() {
 
+    private var tvShowId: Int = 0
     private var currentPage = 0
     private var pageAvailable = 1
     private var isLoading = false
     private val compositeDisposable: CompositeDisposable = CompositeDisposable()
 
-    fun init() {
-        ifViewAttached {
-            it.showFullscreenProgress()
-        }
-        getPopularTvShows()
+    fun init(tvShow: TvShow) {
+        tvShowId = tvShow.id!!
+        getSimilarTvShows()
     }
 
-    fun getMoreTvShows() {
+    fun getMoreSimilarShows() {
         ifViewAttached { it.showFooterLoader() }
-        getPopularTvShows()
+        getSimilarTvShows()
     }
 
-    private fun getPopularTvShows() {
+    private fun getSimilarTvShows() {
         if (currentPage < pageAvailable && !isLoading) {
             isLoading = true
 
-            val disposable = theMovieDbService.getPopularTvShows(page = currentPage + 1)
+            val disposable = theMovieDbService.getSimilarTvShows(tvShowId, currentPage + 1)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe({ response -> onGetPopularTvShowsSuccess(response) },
-                            { e -> onGetPopularTvShowsFailure(e) })
+                    .subscribe({ response -> onGetSimilarTvShowsSuccess(response) },
+                            { e -> onGetSimilarTvShowsFailure(e) })
 
             compositeDisposable.add(disposable)
         }
     }
 
-    private fun onGetPopularTvShowsFailure(e: Throwable?) {
+    private fun onGetSimilarTvShowsSuccess(response: PaginatedResponse<TvShow>?) {
+        currentPage = response!!.page
+        pageAvailable = response.totalPages
+
         isLoading = false
         ifViewAttached {
+            it.hideProgress()
             it.hideFooterLoader()
-            it.hideFullscreenProgress()
-            it.showError(e!!.message!!)
-            Log.e("Error", e.toString())
+            it.addSimilarTvShows(response.results)
         }
     }
 
-    private fun onGetPopularTvShowsSuccess(response: PaginatedResponse<TvShow>) {
-        currentPage = response.page
-        pageAvailable = response.totalPages
+    private fun onGetSimilarTvShowsFailure(e: Throwable?) {
         isLoading = false
-
         ifViewAttached {
+            it.hideProgress()
             it.hideFooterLoader()
-            it.hideFullscreenProgress()
-            it.addItems(response.results)
+            it.showError(e!!.message!!)
+            Log.e("Error", e.toString())
         }
     }
 
@@ -80,12 +79,12 @@ class HomePresenter(private var theMovieDbService: TheMovieDbService) : MvpBaseP
     }
 
     interface View : MvpView {
-        fun showFullscreenProgress()
-        fun hideFullscreenProgress()
+        fun showProgress()
+        fun hideProgress()
         fun showFooterLoader()
         fun hideFooterLoader()
-        fun addItems(tvShows: List<TvShow>)
-        fun showError(errorMessage: String)
+        fun addSimilarTvShows(similarTvShows: List<TvShow>)
         fun openTvShowDetailScreen(tvShow: TvShow)
+        fun showError(errorMessage: String)
     }
 }

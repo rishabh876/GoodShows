@@ -52,4 +52,7 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
     testImplementation 'org.mockito:mockito-core:2.7.22'
+
 }
+
+apply plugin: 'kotlin-android-extensions'

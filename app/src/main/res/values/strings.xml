@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Good Shows</string>
+    <string name="similar_shows">Similar Shows</string>
+    <string name="cover_image">cover_image</string>
 </resources>
