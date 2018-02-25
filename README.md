@@ -16,6 +16,8 @@ The Project is also integrated with [CircleCi 2](https://circleci.com/gh/rishabh
 
 The App has two screen, first screen shows a list of Popular Tv Shows and the second Shows the detailed view of a Tv Show along with a list of similar Tv shows. 
 
+<img width="150" src="https://i.imgur.com/YaVKZpm.png"> <img width="150" src="https://i.imgur.com/7y0Ddkw.jpg"> <img width="150" src="https://i.imgur.com/RmbjuFJ.jpg">
+
 ![Popular Shows Screen](https://i.imgur.com/YaVKZpm.png)
 
 ![Detailed View of TV Show](https://i.imgur.com/7y0Ddkw.jpg)
