@@ -1,6 +1,4 @@
-# GoodShows
 [![CircleCI](https://circleci.com/gh/rishabh876/GoodShows.svg?style=svg)](https://circleci.com/gh/rishabh876/GoodShows)
-
 <p align="center"><img width="270" src="https://i.imgur.com/2QzpRmA.png"></p>
 
 Good Shows is an Open Source Android App that uses [TMDb API](https://developers.themoviedb.org). 
