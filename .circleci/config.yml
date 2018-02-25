@@ -30,7 +30,7 @@ jobs:
             bash <(curl -s https://codecov.io/bash)
       - run:
           name: Setup emulator
-          command: sdkmanager "system-images;android-25;google_apis;armeabi-v7a" && echo "no" | avdmanager create avd -n test -k "system-images;android-25;google_apis;armeabi-v7a"
+          command: sdkmanager "system-images;android-26;google_apis;x86_64" && echo "no" | avdmanager create avd -n test -k "system-images;android-26;google_apis;x86_64"
       - run:
           name: Launch emulator
           command: export LD_LIBRARY_PATH=${ANDROID_HOME}/emulator/lib64:${ANDROID_HOME}/emulator/lib64/qt/lib && emulator64-arm -avd test -noaudio -no-boot-anim -no-window -accel on
@@ -46,7 +46,7 @@ jobs:
       - run:
           name: Run Tests
           command: |
-            ./gradlew connectedAndroidTest
+            ./gradlew connectedAndroidTest -PdisablePreDex
             cp -r app/build/outputs $CIRCLE_ARTIFACTS
             cp -r app/build/outputs/androidTest-results/* $CIRCLE_TEST_REPORTS
       - store_artifacts:
