@@ -2,7 +2,7 @@ package com.rishabh.goodshows
 
 object MockResponses {
 
-    //region Success Page 1
+    //region Success Page 1 (20 Items)
     const val SUCCESS_JSON_PAGE1 = "{\n" +
             "    \"page\": 1,\n" +
             "    \"total_results\": 19972,\n" +
@@ -424,7 +424,7 @@ object MockResponses {
 
     //endregion
 
-    //region Success page 2
+    //region Success page 2 (20 Items)
     const val SUCCESS_JSON_PAGE_2 = "{\n" +
             "    \"page\": 2,\n" +
             "    \"total_results\": 19985,\n" +
@@ -835,7 +835,7 @@ object MockResponses {
             "}"
     //endregion
 
-    //region Success Page 3
+    //region Success Page 3 (20 Items)
     const val SUCCESS_JSON_PAGE_3 = "{\n" +
             "    \"page\": 3,\n" +
             "    \"total_results\": 19985,\n" +

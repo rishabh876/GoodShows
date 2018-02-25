@@ -56,8 +56,8 @@ class PopularShowsPresenterSuccessApiTest {
         popularShowsPresenter.init()
 
         verify(popularShowsView, times(1)).showFullscreenProgress()
-        verify(popularShowsView, Mockito.after(100).times(1)).addItems(ArgumentMatchers.anyList())
-        verify(popularShowsView, Mockito.after(100).times(1)).hideFullscreenProgress()
+        verify(popularShowsView, Mockito.after(200).times(1)).addItems(ArgumentMatchers.anyList())
+        verify(popularShowsView, Mockito.after(200).times(1)).hideFullscreenProgress()
     }
 
     @After

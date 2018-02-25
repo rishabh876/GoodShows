@@ -52,8 +52,8 @@ class SimilarShowsApiSuccessTest {
         showDetailsPresenter.init(tvShow)
 
         Mockito.verify(showDetailsView, Mockito.times(1)).showProgress()
-        Mockito.verify(showDetailsView, Mockito.after(100).times(1)).addSimilarTvShows(ArgumentMatchers.anyList())
-        Mockito.verify(showDetailsView, Mockito.after(100).times(1)).hideProgress()
+        Mockito.verify(showDetailsView, Mockito.after(200).times(1)).addSimilarTvShows(ArgumentMatchers.anyList())
+        Mockito.verify(showDetailsView, Mockito.after(200).times(1)).hideProgress()
     }
 
     @After
