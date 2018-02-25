@@ -12,8 +12,9 @@ The project is written in `Kotlin`, build on `MVP Architecture` and uses librari
 - Dagger 2
 - Mosby
 - Mockito
+- Espresso
 
-The Project is also integrated with [CircleCi 2](https://circleci.com/gh/rishabh876/GoodShows) for Continuous Integration. 
+The Project is also integrated with [CircleCi 2](https://circleci.com/gh/rishabh876/GoodShows) for Continuous Integration. There are some Unit Tests and some Instrumentation Tests that are run on CircleCi.
 
 The App has two screen, first screen shows a list of Popular Tv Shows and the second Shows the detailed view of a Tv Show along with a list of similar Tv shows. 
 
