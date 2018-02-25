@@ -1,4 +1,4 @@
-package com.rishabh.goodshows.homeActivity.presenter
+package com.rishabh.goodshows.popularShowsActivity.presenter
 
 import android.util.Log
 import com.hannesdorfmann.mosby3.mvp.MvpBasePresenter

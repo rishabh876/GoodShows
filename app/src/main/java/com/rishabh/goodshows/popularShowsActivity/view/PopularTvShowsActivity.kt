@@ -1,4 +1,4 @@
-package com.rishabh.goodshows.homeActivity.view
+package com.rishabh.goodshows.popularShowsActivity.view
 
 import android.os.Bundle
 import android.support.design.widget.Snackbar
@@ -12,7 +12,8 @@ import butterknife.ButterKnife
 import com.hannesdorfmann.mosby3.mvp.MvpActivity
 import com.rishabh.goodshows.R
 import com.rishabh.goodshows.app.GoodShowsApplication
-import com.rishabh.goodshows.homeActivity.presenter.PopularShowsPresenter
+import com.rishabh.goodshows.common.TvShowsAdapter
+import com.rishabh.goodshows.popularShowsActivity.presenter.PopularShowsPresenter
 import com.rishabh.goodshows.models.TvShow
 import com.rishabh.goodshows.showDetailsActivity.view.ShowDetailsActivity
 import com.wang.avi.AVLoadingIndicatorView

@@ -1,7 +1,8 @@
-package com.rishabh.goodshows.homeActivity.presenter
+package com.rishabh.goodshows.showDetailsActivity.presenter
 
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import com.rishabh.goodshows.MockResponses
 import com.rishabh.goodshows.models.PaginatedResponse
 import com.rishabh.goodshows.models.TvShow
 import com.rishabh.goodshows.network.TheMovieDbService
@@ -16,25 +17,19 @@ import org.mockito.ArgumentMatchers
 import org.mockito.InjectMocks
 import org.mockito.Mock
 import org.mockito.Mockito
-import org.mockito.Mockito.times
-import org.mockito.Mockito.verify
 import org.mockito.junit.MockitoJUnitRunner
 
-
-/**
- * This test case testes the progress loader and ui updates on
- * Api success of first set of results on home screen
- */
 @RunWith(MockitoJUnitRunner::class)
-class PopularShowsPresenterSuccessApiTest {
+class SimilarShowsApiSuccessTest {
 
     @Mock
     private lateinit var theMovieDbService: TheMovieDbService
     @Mock
-    private lateinit var popularShowsView: PopularShowsPresenter.View
+    private lateinit var showDetailsView: ShowDetailsPresenter.View
+    private lateinit var tvShow: TvShow
 
     @InjectMocks
-    private lateinit var popularShowsPresenter: PopularShowsPresenter
+    private lateinit var showDetailsPresenter: ShowDetailsPresenter
 
     @Before
     fun setUp() {
@@ -44,25 +39,26 @@ class PopularShowsPresenterSuccessApiTest {
         val successResponse = Gson().fromJson<PaginatedResponse<TvShow>>(MockResponses.SUCCESS_JSON_PAGE1, typeToken)
         val response = Flowable.just(successResponse)
 
-        Mockito.`when`(theMovieDbService.getPopularTvShows())
+        tvShow = Gson().fromJson(MockResponses.TV_SHOW_JSON, TvShow::class.java)
+
+        Mockito.`when`(theMovieDbService.getSimilarTvShows(tvShow.id!!))
                 .thenReturn(response)
 
-        popularShowsPresenter.attachView(popularShowsView)
+        showDetailsPresenter.attachView(showDetailsView)
     }
 
     @Test
     fun testFetchingPopularShows() {
-        popularShowsPresenter.init()
+        showDetailsPresenter.init(tvShow)
 
-        verify(popularShowsView, times(1)).showFullscreenProgress()
-        verify(popularShowsView, Mockito.after(100).times(1)).addItems(ArgumentMatchers.anyList())
-        verify(popularShowsView, Mockito.after(100).times(1)).hideFullscreenProgress()
+        Mockito.verify(showDetailsView, Mockito.times(1)).showProgress()
+        Mockito.verify(showDetailsView, Mockito.after(100).times(1)).addSimilarTvShows(ArgumentMatchers.anyList())
+        Mockito.verify(showDetailsView, Mockito.after(100).times(1)).hideProgress()
     }
 
     @After
     fun tearDown() {
-        popularShowsPresenter.detachView()
-        popularShowsPresenter.destroy()
+        showDetailsPresenter.detachView()
+        showDetailsPresenter.destroy()
     }
-
 }

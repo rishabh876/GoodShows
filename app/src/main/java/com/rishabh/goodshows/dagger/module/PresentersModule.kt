@@ -1,6 +1,6 @@
 package com.rishabh.goodshows.dagger.module
 
-import com.rishabh.goodshows.homeActivity.presenter.PopularShowsPresenter
+import com.rishabh.goodshows.popularShowsActivity.presenter.PopularShowsPresenter
 import com.rishabh.goodshows.network.TheMovieDbService
 import com.rishabh.goodshows.showDetailsActivity.presenter.ShowDetailsPresenter
 import dagger.Module

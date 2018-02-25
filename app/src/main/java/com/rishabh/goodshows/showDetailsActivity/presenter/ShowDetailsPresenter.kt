@@ -20,6 +20,7 @@ class ShowDetailsPresenter(private var theMovieDbService: TheMovieDbService) : M
 
     fun init(tvShow: TvShow) {
         tvShowId = tvShow.id!!
+        ifViewAttached { it.showProgress() }
         getSimilarTvShows()
     }
 

@@ -1,7 +1,8 @@
-package com.rishabh.goodshows.homeActivity.presenter
+package com.rishabh.goodshows.popularShowsActivity.presenter
 
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import com.rishabh.goodshows.MockResponses
 import com.rishabh.goodshows.models.PaginatedResponse
 import com.rishabh.goodshows.models.TvShow
 import com.rishabh.goodshows.network.TheMovieDbService

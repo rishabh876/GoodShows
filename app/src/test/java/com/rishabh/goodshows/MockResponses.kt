@@ -1,4 +1,4 @@
-package com.rishabh.goodshows.homeActivity.presenter
+package com.rishabh.goodshows
 
 object MockResponses {
 
@@ -1251,5 +1251,29 @@ object MockResponses {
             "        }\n" +
             "    ]\n" +
             "}"
+    //endregion
+
+    //region Single TvShow Response
+    const val TV_SHOW_JSON = "{\n" +
+            "            \"original_name\": \"The Walking Dead\",\n" +
+            "            \"genre_ids\": [\n" +
+            "                18,\n" +
+            "                10759,\n" +
+            "                10765\n" +
+            "            ],\n" +
+            "            \"name\": \"The Walking Dead\",\n" +
+            "            \"popularity\": 242.897753,\n" +
+            "            \"origin_country\": [\n" +
+            "                \"US\"\n" +
+            "            ],\n" +
+            "            \"vote_count\": 3022,\n" +
+            "            \"first_air_date\": \"2010-10-31\",\n" +
+            "            \"backdrop_path\": \"/xVzvD5BPAU4HpleFSo8QOdHkndo.jpg\",\n" +
+            "            \"original_language\": \"en\",\n" +
+            "            \"id\": 1402,\n" +
+            "            \"vote_average\": 7.4,\n" +
+            "            \"overview\": \"Sheriff's deputy Rick Grimes awakens from a coma to find a post-apocalyptic world dominated by flesh-eating zombies. He sets out to find his family and encounters many other survivors along the way.\",\n" +
+            "            \"poster_path\": \"/vxuoMW6YBt6UsxvMfRNwRl9LtWS.jpg\"\n" +
+            "        }"
     //endregion
 }

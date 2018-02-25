@@ -20,7 +20,7 @@ import com.bumptech.glide.Glide
 import com.hannesdorfmann.mosby3.mvp.MvpActivity
 import com.rishabh.goodshows.R
 import com.rishabh.goodshows.app.GoodShowsApplication
-import com.rishabh.goodshows.homeActivity.view.TvShowsAdapter
+import com.rishabh.goodshows.common.TvShowsAdapter
 import com.rishabh.goodshows.models.TvShow
 import com.rishabh.goodshows.network.NetworkConstants
 import com.rishabh.goodshows.showDetailsActivity.presenter.ShowDetailsPresenter
