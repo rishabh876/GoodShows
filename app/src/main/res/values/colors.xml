@@ -7,4 +7,7 @@
     <color name="colorAccent">#ffc400</color>
     <color name="cardBackground">#272C30</color>
     <color name="windowBackground">#1f1f1f</color>
+    <color name="textColor">#D9ffffff</color>
+    <color name="textColorSecondary">#808080</color>
+    <color name="textColorTertiary">#586973</color>
 </resources>

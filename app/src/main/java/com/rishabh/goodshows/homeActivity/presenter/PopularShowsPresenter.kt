@@ -10,7 +10,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 
-class HomePresenter(private var theMovieDbService: TheMovieDbService) : MvpBasePresenter<HomePresenter.View>() {
+class PopularShowsPresenter(private var theMovieDbService: TheMovieDbService) : MvpBasePresenter<PopularShowsPresenter.View>() {
 
     private var currentPage = 0
     private var pageAvailable = 1

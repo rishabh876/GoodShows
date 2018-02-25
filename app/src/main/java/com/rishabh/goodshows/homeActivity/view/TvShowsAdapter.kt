@@ -68,7 +68,7 @@ class TvShowsAdapter(private var listener: Listener,
             }
             FOOTER -> {
                 var footerLayout = R.layout.footer_progress
-                if(!isVertical)
+                if (!isVertical)
                     footerLayout = R.layout.horizontal_footer_progress
 
                 val view = LayoutInflater.from(parent!!.context).inflate(footerLayout, parent, false)
@@ -126,12 +126,6 @@ class TvShowsAdapter(private var listener: Listener,
             descTv?.text = tvShow.overview
             starRatingTv.text = tvShow.voteAverage.toString()
             yearTv?.text = tvShow.firstAirDate?.split("-")?.get(0)
-
-            ViewCompat.setTransitionName(coverImageView, tvShow.name + "cover")
-            ViewCompat.setTransitionName(titleTv, tvShow.name + "title")
-            ViewCompat.setTransitionName(starRatingTv, tvShow.name + "star")
-            descTv?.apply { ViewCompat.setTransitionName(this, tvShow.name + "desc") }
-            yearTv?.apply { ViewCompat.setTransitionName(this, tvShow.name + "year") }
 
             tvShowContainer.setOnClickListener { listener.onTvShowClicked(tvShow, itemView) }
         }

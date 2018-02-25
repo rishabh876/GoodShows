@@ -12,7 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".homeActivity.view.HomeActivity">
+        <activity android:name=".homeActivity.view.PopularTvShowsActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -20,9 +20,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".showDetailsActivity.view.ShowDetailsActivity"
-            android:theme="@style/ShowDetailsTheme">
-        </activity>
+            android:name=".showDetailsActivity.view.ShowDetailsActivity" />
     </application>
 
 </manifest>

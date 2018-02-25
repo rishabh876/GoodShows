@@ -8,11 +8,9 @@ import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v4.app.ActivityCompat
 import android.support.v4.app.ActivityOptionsCompat
-import android.support.v4.view.ViewCompat
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.Toolbar
-import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -34,6 +32,7 @@ class ShowDetailsActivity : MvpActivity<ShowDetailsPresenter.View, ShowDetailsPr
         ShowDetailsPresenter.View,
         TvShowsAdapter.Listener {
 
+    //region Views
     @BindView(R.id.backdrop_iv)
     lateinit var backdropImageView: ImageView
     @BindView(R.id.cover_iv)
@@ -52,6 +51,9 @@ class ShowDetailsActivity : MvpActivity<ShowDetailsPresenter.View, ShowDetailsPr
     lateinit var similarTvShowsRecyclerView: RecyclerView
     @BindView(R.id.progress_indicator)
     lateinit var progressIndicator: AVLoadingIndicatorView
+    @BindView(R.id.toolbar)
+    lateinit var toolbar: Toolbar
+    //endregion
 
     @Inject
     lateinit var showDetailsPresenter: ShowDetailsPresenter
@@ -61,8 +63,7 @@ class ShowDetailsActivity : MvpActivity<ShowDetailsPresenter.View, ShowDetailsPr
     companion object {
         const val TV_SHOW_KEY = "tv_show_key"
         fun getMyIntent(context: Context, tvShow: TvShow) =
-                Intent(context, ShowDetailsActivity::class.java)
-                        .apply { putExtra(TV_SHOW_KEY, tvShow) }
+                Intent(context, ShowDetailsActivity::class.java).apply { putExtra(TV_SHOW_KEY, tvShow) }
 
     }
 
@@ -73,9 +74,6 @@ class ShowDetailsActivity : MvpActivity<ShowDetailsPresenter.View, ShowDetailsPr
         val tvShow = intent.extras.getSerializable(TV_SHOW_KEY) as TvShow
         initViews(tvShow)
         getPresenter().init(tvShow)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            window.statusBarColor = Color.TRANSPARENT
-        }
     }
 
     private fun initViews(tvShow: TvShow) {
@@ -86,13 +84,22 @@ class ShowDetailsActivity : MvpActivity<ShowDetailsPresenter.View, ShowDetailsPr
         Glide.with(this)
                 .load(NetworkConstants.BASE_URL_IMAGE + NetworkConstants.ImageSize.W500 + tvShow.posterPath)
                 .into(coverImageView)
-        setTransitionNames(tvShow)
+
         titleTv.text = tvShow.name
         descriptionTv.text = tvShow.overview
         starRatingTv.text = tvShow.voteAverage.toString()
         yearTv.text = tvShow.firstAirDate?.split("-")?.get(0)
         languageTv.text = Locale(tvShow.originalLanguage).displayLanguage
 
+        initList()
+
+        toolbar.setNavigationOnClickListener { onBackPressed() }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            window.statusBarColor = Color.TRANSPARENT
+        }
+    }
+
+    private fun initList() {
         adapter = TvShowsAdapter(this, R.layout.tv_show_horizontal_item_layout)
         similarTvShowsRecyclerView.adapter = adapter
         similarTvShowsRecyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
@@ -101,15 +108,6 @@ class ShowDetailsActivity : MvpActivity<ShowDetailsPresenter.View, ShowDetailsPr
                 onScrolled()
             }
         })
-        findViewById<Toolbar>(R.id.toolbar).setNavigationOnClickListener { onBackPressed() }
-    }
-
-    private fun setTransitionNames(tvShow: TvShow) {
-        ViewCompat.setTransitionName(coverImageView, tvShow.name + "cover")
-        ViewCompat.setTransitionName(titleTv, tvShow.name + "title")
-        ViewCompat.setTransitionName(descriptionTv, tvShow.name + "desc")
-        ViewCompat.setTransitionName(starRatingTv, tvShow.name + "star")
-        ViewCompat.setTransitionName(yearTv, tvShow.name + "year")
     }
 
     private fun onScrolled() {
@@ -127,41 +125,25 @@ class ShowDetailsActivity : MvpActivity<ShowDetailsPresenter.View, ShowDetailsPr
 
     override fun addSimilarTvShows(similarTvShows: List<TvShow>) {
         adapter.addItems(similarTvShows)
-        Log.d("log", "addSimilarTvShows")
     }
 
     override fun showProgress() {
         progressIndicator.visibility = View.VISIBLE
-        Log.d("log", "showProgress")
     }
 
     override fun hideProgress() {
         progressIndicator.visibility = View.GONE
-        Log.d("log", "hideProgress")
     }
 
     override fun showFooterLoader() {
         adapter.showFooter()
-        Log.d("log", "showFooterLoader")
     }
 
     override fun hideFooterLoader() {
         adapter.removeFooter()
-        Log.d("log", "hideFooterLoader")
     }
 
     override fun openTvShowDetailScreen(tvShow: TvShow) {
-//        val coverImageView = clickedItemView.findViewById<ImageView>(R.id.cover_iv)
-//        val titleTv = clickedItemView.findViewById<TextView>(R.id.title_tv)
-//        val starRating = clickedItemView.findViewById<TextView>(R.id.star_rating_tv)
-//        val yearTv = clickedItemView.findViewById<TextView>(R.id.year_tv)
-//
-//        val options = ActivityOptionsCompat.makeSceneTransitionAnimation(this,
-//                Pair.create(coverImageView, ViewCompat.getTransitionName(coverImageView)),
-//                Pair.create(titleTv, ViewCompat.getTransitionName(titleTv)),
-//                Pair.create(yearTv, ViewCompat.getTransitionName(yearTv)),
-//                Pair.create(starRating, ViewCompat.getTransitionName(starRating)))
-
         val options = ActivityOptionsCompat.makeSceneTransitionAnimation(this)
 
         val intent = ShowDetailsActivity.getMyIntent(this, tvShow)

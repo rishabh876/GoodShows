@@ -6,7 +6,16 @@
     android:id="@+id/parent_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.rishabh.goodshows.homeActivity.view.HomeActivity">
+    tools:context="com.rishabh.goodshows.homeActivity.view.PopularTvShowsActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:elevation="3dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:title="@string/app_name" />
 
     <com.wang.avi.AVLoadingIndicatorView
         android:id="@+id/progress_indicator"
@@ -21,16 +30,29 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:visibility="gone" />
 
+    <TextView
+        android:id="@+id/popular_label_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="Popular TV Shows"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/shows_list_rv"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
         android:clipToPadding="false"
         android:orientation="vertical"
         android:paddingBottom="8dp"
-        android:paddingTop="8dp"
-        android:layout_gravity="center"
         app:layoutManager="LinearLayoutManager"
-        tools:listitem="@layout/tv_show_list_item" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/popular_label_tv"
+        tools:listitem="@layout/popular_tv_show_list_item" />
 
 </android.support.constraint.ConstraintLayout>

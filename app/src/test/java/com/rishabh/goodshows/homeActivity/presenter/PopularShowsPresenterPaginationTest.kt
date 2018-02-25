@@ -19,15 +19,15 @@ import org.mockito.Mockito
 import org.mockito.junit.MockitoJUnitRunner
 
 @RunWith(MockitoJUnitRunner::class)
-class HomePresenterPaginationTest {
+class PopularShowsPresenterPaginationTest {
 
     @Mock
     private lateinit var theMovieDbService: TheMovieDbService
     @Mock
-    private lateinit var homeView: HomePresenter.View
+    private lateinit var popularShowsView: PopularShowsPresenter.View
 
     @InjectMocks
-    private lateinit var homePresenter: HomePresenter
+    private lateinit var popularShowsPresenter: PopularShowsPresenter
 
     @Before
     fun setUp() {
@@ -50,36 +50,36 @@ class HomePresenterPaginationTest {
         Mockito.`when`(theMovieDbService.getPopularTvShows(3))
                 .thenReturn(responsePage3)
 
-        homePresenter.attachView(homeView)
+        popularShowsPresenter.attachView(popularShowsView)
     }
 
     @Test
     fun testFetchingPopularShows() {
-        homePresenter.init()
+        popularShowsPresenter.init()
 
-        Mockito.verify(homeView, Mockito.times(1)).showFullscreenProgress()
-        Mockito.verify(homeView, Mockito.after(100).times(1)).addItems(ArgumentMatchers.anyList())
-        Mockito.verify(homeView, Mockito.after(100).times(1)).hideFullscreenProgress()
+        Mockito.verify(popularShowsView, Mockito.times(1)).showFullscreenProgress()
+        Mockito.verify(popularShowsView, Mockito.after(100).times(1)).addItems(ArgumentMatchers.anyList())
+        Mockito.verify(popularShowsView, Mockito.after(100).times(1)).hideFullscreenProgress()
 
-        Mockito.reset(homeView)
-        homePresenter.getMoreTvShows()
+        Mockito.reset(popularShowsView)
+        popularShowsPresenter.getMoreTvShows()
 
-        Mockito.verify(homeView, Mockito.times(1)).showFooterLoader()
-        Mockito.verify(homeView, Mockito.after(100).times(1)).addItems(ArgumentMatchers.anyList())
-        Mockito.verify(homeView, Mockito.after(100).times(1)).showFooterLoader()
+        Mockito.verify(popularShowsView, Mockito.times(1)).showFooterLoader()
+        Mockito.verify(popularShowsView, Mockito.after(100).times(1)).addItems(ArgumentMatchers.anyList())
+        Mockito.verify(popularShowsView, Mockito.after(100).times(1)).showFooterLoader()
 
-        Mockito.reset(homeView)
-        homePresenter.getMoreTvShows()
+        Mockito.reset(popularShowsView)
+        popularShowsPresenter.getMoreTvShows()
 
-        Mockito.verify(homeView, Mockito.times(1)).showFooterLoader()
-        Mockito.verify(homeView, Mockito.after(100).times(1)).addItems(ArgumentMatchers.anyList())
-        Mockito.verify(homeView, Mockito.after(100).times(1)).showFooterLoader()
+        Mockito.verify(popularShowsView, Mockito.times(1)).showFooterLoader()
+        Mockito.verify(popularShowsView, Mockito.after(100).times(1)).addItems(ArgumentMatchers.anyList())
+        Mockito.verify(popularShowsView, Mockito.after(100).times(1)).showFooterLoader()
     }
 
     @After
     fun tearDown() {
-        homePresenter.detachView()
-        homePresenter.destroy()
+        popularShowsPresenter.detachView()
+        popularShowsPresenter.destroy()
     }
 
 }

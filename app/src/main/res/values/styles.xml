@@ -2,53 +2,23 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:windowBackground">@color/windowBackground</item>
-        <item name="android:textColor">@android:color/white</item>
-        <item name="android:textColorPrimary">@android:color/white</item>
-        <item name="android:textColorSecondary">#808080</item>
-        <item name="android:textColorTertiary">#586973</item>
-        <item name="android:navigationBarColor" tools:targetApi="lollipop">@color/colorPrimaryDark</item>
+        <item name="android:textColor">@color/textColor</item>
+        <item name="android:textColorPrimary">@color/textColor</item>
+        <item name="android:textColorSecondary">@color/textColorSecondary</item>
+        <item name="android:textColorTertiary">@color/textColorTertiary</item>
+        <item name="android:navigationBarColor" tools:targetApi="lollipop">@color/colorPrimaryDark
+        </item>
         <item name="android:windowContentTransitions" tools:targetApi="lollipop">true</item>
         <item name="android:windowEnterTransition" tools:targetApi="lollipop">
-            @transition/change_image_transform
+            @transition/explode
         </item>
         <item name="android:windowExitTransition" tools:targetApi="lollipop">
-            @transition/change_image_transform
-        </item>
-
-        <item name="android:windowSharedElementEnterTransition" tools:targetApi="lollipop">
-            @transition/change_image_transform
-        </item>
-        <item name="android:windowSharedElementExitTransition" tools:targetApi="lollipop">
-            @transition/change_image_transform
-        </item>
-    </style>
-
-    <style name="ShowDetailsTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:windowBackground">@color/windowBackground</item>
-        <item name="android:textColor">@android:color/white</item>
-        <item name="android:textColorPrimary">@android:color/white</item>
-        <item name="android:textColorSecondary">#808080</item>
-        <item name="android:textColorTertiary">#586973</item>
-        <item name="android:navigationBarColor" tools:targetApi="lollipop">@color/colorPrimaryDark</item>
-        <item name="android:windowContentTransitions" tools:targetApi="lollipop">true</item>
-        <item name="android:windowEnterTransition" tools:targetApi="lollipop">@transition/explode</item>
-        <item name="android:windowExitTransition" tools:targetApi="lollipop">@transition/explode</item>
-
-        <item name="android:windowSharedElementEnterTransition" tools:targetApi="lollipop">
-            @transition/change_image_transform
-        </item>
-        <item name="android:windowSharedElementExitTransition" tools:targetApi="lollipop">
-            @transition/change_image_transform
+            @transition/explode
         </item>
     </style>
 

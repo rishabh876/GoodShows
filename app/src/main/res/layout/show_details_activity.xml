@@ -13,18 +13,18 @@
         android:id="@+id/app_bar_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fitsSystemWindows="true"
         android:elevation="0dp"
-        app:elevation="0dp"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+        android:fitsSystemWindows="true"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:elevation="0dp">
 
         <android.support.design.widget.CollapsingToolbarLayout
             android:id="@+id/collapsing_toolbar"
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:fitsSystemWindows="true"
-            app:statusBarScrim="@android:color/transparent"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            app:statusBarScrim="@android:color/transparent"
             app:titleEnabled="true">
 
             <ImageView
@@ -48,12 +48,12 @@
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
-                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-                app:navigationIcon="?attr/homeAsUpIndicator"
-                android:background="@android:color/transparent"
                 android:layout_width="match_parent"
                 android:layout_height="68dp"
-                app:layout_collapseMode="pin" />
+                android:background="@android:color/transparent"
+                app:layout_collapseMode="pin"
+                app:navigationIcon="?attr/homeAsUpIndicator"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
@@ -74,10 +74,9 @@
                 android:id="@+id/title_tv"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
+                android:layout_marginEnd="@dimen/layout_padding"
                 android:layout_marginStart="110dp"
                 android:layout_marginTop="8dp"
-                android:alpha="0.9"
                 android:ellipsize="end"
                 android:maxLines="2"
                 android:textSize="19sp"
@@ -122,7 +121,7 @@
                 android:id="@+id/year_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
+                android:layout_marginEnd="@dimen/layout_padding"
                 android:layout_marginStart="4dp"
                 android:textColor="@color/colorPrimary3"
                 android:textStyle="bold"
@@ -134,9 +133,9 @@
                 android:id="@+id/desc_tv"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginStart="16dp"
+                android:layout_marginBottom="@dimen/layout_padding"
+                android:layout_marginEnd="@dimen/layout_padding"
+                android:layout_marginStart="@dimen/layout_padding"
                 android:layout_marginTop="8dp"
                 android:textColor="?android:attr/textColorSecondary"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -151,14 +150,14 @@
                 android:id="@+id/similar_label_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginStart="@dimen/layout_padding"
+                android:layout_marginTop="@dimen/layout_padding"
+                android:text="@string/similar_shows"
                 android:textColor="?android:attr/textColorSecondary"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/desc_tv"
-                android:text="@string/similar_shows" />
+                app:layout_constraintTop_toBottomOf="@+id/desc_tv" />
 
             <com.wang.avi.AVLoadingIndicatorView
                 android:id="@+id/progress_indicator"
@@ -177,15 +176,15 @@
                 android:id="@+id/similar_rv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:orientation="horizontal"
-                android:paddingEnd="8dp"
-                android:nestedScrollingEnabled="false"
-                android:paddingStart="8dp"
                 android:layout_gravity="center"
+                android:layout_marginTop="8dp"
                 android:background="@color/windowBackground"
-                app:layoutManager="LinearLayoutManager"
+                android:nestedScrollingEnabled="false"
+                android:orientation="horizontal"
                 android:paddingBottom="12dp"
+                android:paddingEnd="8dp"
+                android:paddingStart="8dp"
+                app:layoutManager="LinearLayoutManager"
                 app:layout_constraintTop_toBottomOf="@+id/similar_label_tv"
                 tools:listitem="@layout/tv_show_horizontal_item_layout"
                 tools:visibility="visible"
@@ -199,13 +198,13 @@
         android:id="@+id/cover_iv"
         android:layout_width="80dp"
         android:layout_height="120dp"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="@dimen/layout_padding"
         android:adjustViewBounds="true"
-        app:cornerRadius="3dp"
+        android:elevation="@dimen/elevation"
+        app:cornerRadius="@dimen/corner_radius"
         app:layout_anchor="@id/app_bar_layout"
         app:layout_anchorGravity="bottom|left|start"
         app:roundedCorners="all"
-        android:elevation="4dp"
         tools:src="@tools:sample/avatars" />
 
 </android.support.design.widget.CoordinatorLayout>

@@ -23,17 +23,17 @@ import org.mockito.junit.MockitoJUnitRunner
  */
 
 @RunWith(MockitoJUnitRunner::class)
-class HomePresenterFailedApiTest {
+class PopularShowsPresenterFailedApiTest {
 
     @Mock
-    private lateinit var homeView: HomePresenter.View
+    private lateinit var popularShowsView: PopularShowsPresenter.View
     @Mock
     private lateinit var theMovieDbService: TheMovieDbService
     @Mock
     private lateinit var exception: Exception
 
     @InjectMocks
-    private lateinit var homePresenter: HomePresenter
+    private lateinit var popularShowsPresenter: PopularShowsPresenter
 
     @Before
     fun setUp() {
@@ -48,22 +48,22 @@ class HomePresenterFailedApiTest {
         Mockito.`when`(theMovieDbService.getPopularTvShows())
                 .thenReturn(errorResponse)
 
-        homePresenter.attachView(homeView)
+        popularShowsPresenter.attachView(popularShowsView)
     }
 
     @Test
     fun testFetchingPopularShows() {
 
-        homePresenter.init()
+        popularShowsPresenter.init()
 
-        Mockito.verify(homeView, Mockito.times(1)).showFullscreenProgress()
-        Mockito.verify(homeView, Mockito.after(200).times(1)).showError(ArgumentMatchers.anyString())
-        Mockito.verify(homeView, Mockito.after(200).times(1)).hideFullscreenProgress()
+        Mockito.verify(popularShowsView, Mockito.times(1)).showFullscreenProgress()
+        Mockito.verify(popularShowsView, Mockito.after(200).times(1)).showError(ArgumentMatchers.anyString())
+        Mockito.verify(popularShowsView, Mockito.after(200).times(1)).hideFullscreenProgress()
     }
 
     @After
     fun tearDown() {
-        homePresenter.detachView()
-        homePresenter.destroy()
+        popularShowsPresenter.detachView()
+        popularShowsPresenter.destroy()
     }
 }

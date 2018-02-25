@@ -5,14 +5,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="120dp"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="8dp"
-    android:layout_marginEnd="8dp"
-    android:layout_marginStart="8dp"
-    android:layout_marginTop="8dp"
+    android:layout_marginBottom="@dimen/list_item_padding"
+    android:layout_marginEnd="@dimen/list_item_padding"
+    android:layout_marginStart="@dimen/list_item_padding"
+    android:layout_marginTop="@dimen/list_item_padding"
     android:minHeight="180dp"
     app:cardBackgroundColor="@color/cardBackground"
-    app:cardCornerRadius="4dp"
-    app:cardElevation="3dp">
+    app:cardCornerRadius="@dimen/card_corner_radius"
+    app:cardElevation="@dimen/elevation">
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/tvshow_container"
@@ -27,7 +27,7 @@
             android:layout_marginBottom="16dp"
             android:adjustViewBounds="true"
             android:scaleType="centerCrop"
-            app:cornerRadius="4dp"
+            app:cornerRadius="@dimen/card_corner_radius"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -52,7 +52,6 @@
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:alpha="0.85"
             android:ellipsize="end"
             android:maxLines="2"
             android:textStyle="bold"

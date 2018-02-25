@@ -26,15 +26,15 @@ import org.mockito.junit.MockitoJUnitRunner
  * Api success of first set of results on home screen
  */
 @RunWith(MockitoJUnitRunner::class)
-class HomePresenterSuccessApiTest {
+class PopularShowsPresenterSuccessApiTest {
 
     @Mock
     private lateinit var theMovieDbService: TheMovieDbService
     @Mock
-    private lateinit var homeView: HomePresenter.View
+    private lateinit var popularShowsView: PopularShowsPresenter.View
 
     @InjectMocks
-    private lateinit var homePresenter: HomePresenter
+    private lateinit var popularShowsPresenter: PopularShowsPresenter
 
     @Before
     fun setUp() {
@@ -47,22 +47,22 @@ class HomePresenterSuccessApiTest {
         Mockito.`when`(theMovieDbService.getPopularTvShows())
                 .thenReturn(response)
 
-        homePresenter.attachView(homeView)
+        popularShowsPresenter.attachView(popularShowsView)
     }
 
     @Test
     fun testFetchingPopularShows() {
-        homePresenter.init()
+        popularShowsPresenter.init()
 
-        verify(homeView, times(1)).showFullscreenProgress()
-        verify(homeView, Mockito.after(100).times(1)).addItems(ArgumentMatchers.anyList())
-        verify(homeView, Mockito.after(100).times(1)).hideFullscreenProgress()
+        verify(popularShowsView, times(1)).showFullscreenProgress()
+        verify(popularShowsView, Mockito.after(100).times(1)).addItems(ArgumentMatchers.anyList())
+        verify(popularShowsView, Mockito.after(100).times(1)).hideFullscreenProgress()
     }
 
     @After
     fun tearDown() {
-        homePresenter.detachView()
-        homePresenter.destroy()
+        popularShowsPresenter.detachView()
+        popularShowsPresenter.destroy()
     }
 
 }
