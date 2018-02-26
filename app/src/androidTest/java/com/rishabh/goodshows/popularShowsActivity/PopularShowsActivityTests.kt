@@ -29,8 +29,13 @@ class PopularShowsActivityTests {
     @Rule
     var activityRule: IntentsTestRule<PopularTvShowsActivity> = IntentsTestRule(PopularTvShowsActivity::class.java)
 
+    /**
+     * This test will check if the recyclerview is visible and then scroll multiple times
+     * to check pagination is happening. At the end if the number of items in RecyclerView are
+     * greater than one page then test passes
+     */
     @Test
-    fun checkPagination() {
+    fun testPagination() {
         onView(withId(R.id.shows_list_rv)).check(matches(isDisplayed()))
         waitForSeconds(50)
         onView(withId(R.id.shows_list_rv)).perform(swipeUp())
@@ -45,8 +50,12 @@ class PopularShowsActivityTests {
                 .check(RecyclerViewItemCountAssertion.withItemCount(Matchers.greaterThan(20)))
     }
 
+    /**
+     * This test will check if the Show details activity is opened when
+     * an item from the list is clicked
+     */
     @Test
-    fun checkItemClick() {
+    fun testItemClick() {
         onView(withId(R.id.shows_list_rv)).check(matches(isDisplayed()))
         waitForSeconds(100)
         onView(withId(R.id.shows_list_rv)).perform(swipeUp())

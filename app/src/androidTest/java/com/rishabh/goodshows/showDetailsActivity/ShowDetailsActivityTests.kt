@@ -39,6 +39,9 @@ class ShowDetailsActivityTests {
         }
     }
 
+    /**
+     * This test will check if the values of tv show is populated on the UI.
+     */
     @Test
     fun testPopulatedViews() {
         hasDescendant(withText(tvShow.name)).matches(withId(R.id.title_tv))
@@ -51,6 +54,11 @@ class ShowDetailsActivityTests {
         onView(withId(R.id.similar_label_tv)).check(matches(isDisplayed()))
     }
 
+    /**
+     * This test will check if the recyclerview is visible and then scroll multiple times
+     * to check pagination is happening. At the end if the number of items in RecyclerView are
+     * greater than one page then test passes
+     */
     @Test
     fun testSimilarShowsPagination() {
         onView(withId(R.id.similar_rv)).check(matches(isDisplayed()))
@@ -68,6 +76,10 @@ class ShowDetailsActivityTests {
                 .check(RecyclerViewItemCountAssertion.withItemCount(greaterThan(20)))
     }
 
+    /**
+     * This test will check if the Show details activity is opened when
+     * an item from similar shows list is clicked
+     */
     @Test
     fun testSimilarShowsClick() {
         onView(withId(R.id.similar_rv)).check(matches(isDisplayed()))

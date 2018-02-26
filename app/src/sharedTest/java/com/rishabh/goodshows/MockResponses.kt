@@ -1,5 +1,10 @@
 package com.rishabh.goodshows
 
+/**
+ * A common class for AndroidTest and Test, This class provides mock responses
+ * to test pagination and error states. Since models are immutable (final), we are using Gson
+ * to create mock instances.
+ */
 object MockResponses {
 
     //region Success Page 1 (20 Items)

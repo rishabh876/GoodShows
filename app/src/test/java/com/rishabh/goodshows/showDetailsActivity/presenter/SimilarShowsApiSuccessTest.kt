@@ -19,6 +19,11 @@ import org.mockito.Mock
 import org.mockito.Mockito
 import org.mockito.junit.MockitoJUnitRunner
 
+/**
+ * This test case checks the progress loader and ui updates on
+ * Api failure of first set of results on Show Details screen
+ */
+
 @RunWith(MockitoJUnitRunner::class)
 class SimilarShowsApiSuccessTest {
 

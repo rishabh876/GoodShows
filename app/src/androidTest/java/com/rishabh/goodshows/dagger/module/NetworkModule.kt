@@ -20,11 +20,14 @@ import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Named
 import javax.inject.Singleton
 
+/**
+ * A mock module for Instrumentation test, to remove any network dependencies and flakiness due to network issues.
+ */
 @Module
 class NetworkModule(private var goodShowsApplication: GoodShowsApplication) {
 
     @Provides
-    fun provideItemService(retrofit: Retrofit): TheMovieDbService {
+    fun provideMovieDbService(retrofit: Retrofit): TheMovieDbService {
         return object : TheMovieDbService {
 
             override fun getPopularTvShows(page: Int, apiKey: String): Flowable<PaginatedResponse<TvShow>> {

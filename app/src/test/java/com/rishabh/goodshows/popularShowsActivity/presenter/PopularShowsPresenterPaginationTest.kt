@@ -19,6 +19,10 @@ import org.mockito.Mock
 import org.mockito.Mockito
 import org.mockito.junit.MockitoJUnitRunner
 
+/**
+ * This test checks the presenter for pagination.
+ * A mock View replicates the behaviour of a view during pagination.
+ */
 @RunWith(MockitoJUnitRunner::class)
 class PopularShowsPresenterPaginationTest {
 

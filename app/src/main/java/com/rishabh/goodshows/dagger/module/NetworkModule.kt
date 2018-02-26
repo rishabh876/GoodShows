@@ -14,12 +14,11 @@ import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Named
 import javax.inject.Singleton
 
-
 @Module
 class NetworkModule(private var goodShowsApplication: GoodShowsApplication) {
 
     @Provides
-    fun provideItemService(retrofit: Retrofit): TheMovieDbService {
+    fun provideMovieDbService(retrofit: Retrofit): TheMovieDbService {
         return retrofit.create<TheMovieDbService>(TheMovieDbService::class.java)
     }
 
