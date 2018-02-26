@@ -19,5 +19,5 @@ The App has two screen, first screen shows a list of Popular Tv Shows and the se
 <img width="270" src="https://i.imgur.com/YaVKZpm.png"> <img width="270" src="https://i.imgur.com/7y0Ddkw.jpg"> <img width="270" src="https://i.imgur.com/RmbjuFJ.jpg">
 
 
-[![Medium](https://img.shields.io/badge/Medium-%40RishabhHarit-green.svg?longCache=true&style=social)](https://medium.com/@rishabhharit)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-%40RishabhHarit-blue.svg?longCache=true&style=social)](https://www.linkedin.com/in/rishabhharit/)
+[![Medium](https://img.shields.io/badge/Medium-%40RishabhHarit-green.svg)](https://medium.com/@rishabhharit)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-%40RishabhHarit-blue.svg)](https://www.linkedin.com/in/rishabhharit/)
